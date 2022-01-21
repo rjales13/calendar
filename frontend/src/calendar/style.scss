@@ -1,0 +1,212 @@
+$white: #ffffff;
+$black: #333333;
+$gray: #7d8994;
+$grayBorder: #7c7c7c;
+$orange: #de6e46;
+$purple: #ae5989;
+
+$radius: 50%;
+
+.cardCalendar {
+  background: $white;
+  max-width: 35rem;
+  margin: 5rem auto;
+  box-shadow: 0 1rem 2.5rem rgb(27, 64, 94);
+  border-radius: 6px;
+  padding: 20px;
+
+  &__header {
+    color: $gray;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2rem;
+    margin: -40px 0 -20px;
+
+    i:before {
+      font-size: 32px;
+    }
+  }
+  &__body {
+    margin: 10px;
+    outline: 3px solid #9a9a9a;
+
+    ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      padding: 0;
+      margin: 0;
+      border-color: $grayBorder;
+      border-style: solid;
+      border-width: 0;
+      border-left-width: 3px;
+      border-top-width: 3px;
+    }
+
+    &--days {
+      li {
+        display: grid;
+        text-transform: capitalize;
+        text-align: center;
+        color: $gray;
+        background-color: #ececed;
+        margin: 0;
+        font-size: 12px;
+        border-color: $grayBorder;
+        border-style: solid;
+        border-width: 0;
+        border-right-width: 3px;
+        margin-right: -1px;
+      }
+    }
+    &--dates {
+      li {
+        display: grid;
+        place-items: self-start;
+        text-align: center;
+        font-size: 10px;
+        color: #928d8f;
+        border-color: $grayBorder;
+        border-style: solid;
+        border-width: 0;
+        border-right-width: 3px;
+        border-bottom-width: 3px;
+        padding: 0 0 30px 5px;
+        margin-right: -1px;
+        min-height: 40px;
+        max-height: 25px;
+
+        &.notCurrentMonth {
+          background-color: #ccc;
+        }
+        &.currentMonth {
+          background-color: #fafafa;
+          cursor: pointer;
+        }
+
+        .reminders {
+          padding: 0 3px;
+          margin: 1px 0;
+          border-radius: 3px;
+          pointer-events: none;
+          @media only screen and (max-width: 440px) {
+            font-size: 5px;
+            padding: 2px 1px;
+            margin: 3px 0;
+          }
+          @media only screen and (max-width: 320px) {
+            font-size: 5px;
+            padding: 2px 0;
+            margin: 6px 0px 0 -4px
+          }
+        }
+      }
+    }
+  }
+  &__footer {
+    color: $gray;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 18px;
+
+    .reminderList {
+      .reminderTitle {
+        display: flex;
+        margin: 10px 30px 0;
+        justify-content: space-evenly;
+        align-items: center;
+        border-bottom: 2px solid #cda6a6;
+        @media only screen and (max-width: 440px) {
+          margin: 0;
+          small {
+            width: 100%;
+          }
+        }
+        @media only screen and (max-width: 320px) {
+          font-size: 13px;
+        }
+      }
+
+      ul {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        align-items: end;
+        padding: 0 50px;
+        grid-gap: 10px;
+        @media only screen and (max-width: 440px) {
+          grid-template-columns: repeat(1, 1fr);
+          padding: 0 50px 0 0;
+          width: 100%;
+          input {
+            width: 100%;
+          }
+        }
+
+        div {
+          display: flex;
+          flex-direction: column;
+          font-size: 16px;
+        }
+
+        li {
+          label {
+            display: block;
+          }
+          @media only screen and (max-width: 440px) {
+            display: grid;
+            &.liDelete {
+              position: absolute;
+              right: 50px;
+            }
+          }
+        }
+      }
+      select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-position: right 50%;
+        background-repeat: no-repeat;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDZFNDEwNjlGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDZFNDEwNkFGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0NkU0MTA2N0Y3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0NkU0MTA2OEY3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuGsgwQAAAA5SURBVHjaYvz//z8DOYCJgUxAf42MQIzTk0D/M+KzkRGPoQSdykiKJrBGpOhgJFYTWNEIiEeAAAMAzNENEOH+do8AAAAASUVORK5CYII=);
+        padding: 4px 10px;
+        padding-right: 1.5em;
+        border-radius: 0;
+        .hideOption {
+          display: none;
+        }
+      }
+      input[type="text"] {
+        padding: 3.3px 10px;
+        box-sizing: border-box;
+      }
+      input[type="color"],
+      select {
+        cursor: pointer;
+      }
+      i:before {
+        font-size: 32px;
+      }
+      i {
+        cursor: pointer;
+        &.fa-edit {
+          color: #41953c;
+        }
+        &.fa-trash-alt {
+          color: #d94141;
+        }
+        &.fa-plus-square {
+          color: #0808ff;
+        }
+      }
+    }
+  }
+  i {
+    cursor: pointer;
+    &.disabled {
+      cursor: default;
+      opacity: 0.4;
+    }
+  }
+}
